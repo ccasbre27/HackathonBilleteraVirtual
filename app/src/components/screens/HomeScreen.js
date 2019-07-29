@@ -4,6 +4,7 @@ import {
   View,
   Text,
 } from 'react-native'
+import {AsyncStorage} from 'react-native'
 
 export const isAccountLinked = () => {
   return new Promise((resolve, reject) => {
@@ -20,11 +21,40 @@ export const isAccountLinked = () => {
 };
 
 export default class HomeScreen extends React.Component {
-  render() {
-    
+
+  constructor(){
+    super()
+    this.state = {
+      config: { 
+      }
+    }
+  }
+
+  async componentDidMount () {
+
+    const config = await isAccountLinked();
+    if(config){
+      this.setState({
+        config
+      })
+    }
+    console.log(config);
+  }
+
+  render () {
+    const isConfig = this.state.config.length;
+console.warn(isConfig)
+    if(isConfig === 0){
+      return (
+        <View style={styles.container}> 
+          <Text style={styles.textStyle}>Configure your account</Text>
+        </View>
+      )
+    }
+
     return (
       <View style={styles.container}> 
-        <Text style={styles.textStyle}>Home</Text>
+        <Text style={styles.textStyle}>Home `${isConfig}` x   </Text>
       </View>
     )
   }

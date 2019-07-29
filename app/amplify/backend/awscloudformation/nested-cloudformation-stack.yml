@@ -138,6 +138,39 @@
 					"env": "comp"
 				}
 			}
+		},
+		"storagetxs": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/comp-comp-20190729153524-deployment/amplify-cfn-templates/storage/txs-cloudformation-template.json",
+				"Parameters": {
+					"tableName": "txs",
+					"partitionKeyName": "id",
+					"partitionKeyType": "S",
+					"env": "comp"
+				}
+			}
+		},
+		"functioncompd3bca7ac": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/comp-comp-20190729153524-deployment/amplify-cfn-templates/function/compd3bca7ac-cloudformation-template.json",
+				"Parameters": {
+					"storagetxsName": {
+						"Fn::GetAtt": [
+							"storagetxs",
+							"Outputs.Name"
+						]
+					},
+					"storagetxsArn": {
+						"Fn::GetAtt": [
+							"storagetxs",
+							"Outputs.Arn"
+						]
+					},
+					"env": "comp"
+				}
+			}
 		}
 	},
 	"Outputs": {
