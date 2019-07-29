@@ -5,11 +5,11 @@ import {
   Text,
 } from 'react-native'
 
-export default class MakePaymentScreen extends React.Component {
+export default class UsersScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}> 
-        <Text style={styles.textStyle}>make payent</Text>
+        <Text style={styles.textStyle}>user screen</Text>
       </View>
     )
   }

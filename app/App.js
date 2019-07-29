@@ -22,6 +22,10 @@ import HomeScreen from './src/components/screens/HomeScreen'
 import SettingsScreen from './src/components/screens/SettingsScreen'
 import ProfileScreen from './src/components/screens/ProfileScreen'
 import MakePaymentScreen from './src/components/screens/MakePaymentScreen'
+import GetPaymentScreen from './src/components/screens/GetPaymentScreen'
+import ActivityFeed from './src/components/screens/ActivityFeedScreen'
+import User from './src/components/screens/UsersScreen'
+import Limits from './src/components/screens/LimitsScreen'
 
 // Amplify imports and config
 import Amplify from '@aws-amplify/core'
@@ -48,10 +52,46 @@ const configurations = {
       )
     }
   },
-  PaymentScreen: {
+  MakePaymentScreen: {
     screen: MakePaymentScreen,
     navigationOptions: {
-      tabBarLabel: 'Pay',
+      tabBarLabel: 'M',
+      tabBarIcon: ({tintColor}) => (
+        <Ionicons style={{fontSize: 26, color: tintColor}} name="ios-person" />
+      )
+    }
+  },
+  GetPaymentScreen: {
+    screen: GetPaymentScreen,
+    navigationOptions: {
+      tabBarLabel: 'G',
+      tabBarIcon: ({tintColor}) => (
+        <Ionicons style={{fontSize: 26, color: tintColor}} name="ios-person" />
+      )
+    }
+  },
+  ActivityFeed: {
+    screen: ActivityFeed,
+    navigationOptions: {
+      tabBarLabel: 'f',
+      tabBarIcon: ({tintColor}) => (
+        <Ionicons style={{fontSize: 26, color: tintColor}} name="ios-person" />
+      )
+    }
+  },
+  User: {
+    screen: User,
+    navigationOptions: {
+      tabBarLabel: 'u',
+      tabBarIcon: ({tintColor}) => (
+        <Ionicons style={{fontSize: 26, color: tintColor}} name="ios-person" />
+      )
+    }
+  },
+  Limits: {
+    screen: Limits,
+    navigationOptions: {
+      tabBarLabel: 'l',
       tabBarIcon: ({tintColor}) => (
         <Ionicons style={{fontSize: 26, color: tintColor}} name="ios-person" />
       )
