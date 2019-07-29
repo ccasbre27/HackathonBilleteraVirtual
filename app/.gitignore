@@ -5,7 +5,7 @@ npm-debug.*
 *.p12
 *.key
 *.mobileprovision
-amplify/*
+# amplify/*
 .amplifyrc
 .watchmanconfig
 yarn.lock
@@ -21,5 +21,5 @@ PhoneInput2.js
 build/
 dist/
 node_modules/
-aws-exports.js
-awsconfiguration.json
+# aws-exports.js
+# awsconfiguration.json

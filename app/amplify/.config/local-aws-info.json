@@ -1,0 +1,7 @@
+{
+    "comp": {
+        "configLevel": "project",
+        "useProfile": true,
+        "profileName": "gbt"
+    }
+}
