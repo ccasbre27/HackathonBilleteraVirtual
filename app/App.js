@@ -21,6 +21,7 @@ import ForgetPasswordScreen from './src/components/screens/ForgetPasswordScreen'
 import HomeScreen from './src/components/screens/HomeScreen'
 import SettingsScreen from './src/components/screens/SettingsScreen'
 import ProfileScreen from './src/components/screens/ProfileScreen'
+import MakePaymentScreen from './src/components/screens/MakePaymentScreen'
 
 // Amplify imports and config
 import Amplify from '@aws-amplify/core'
@@ -42,6 +43,15 @@ const configurations = {
     screen: ProfileScreen,
     navigationOptions: {
       tabBarLabel: 'Profile',
+      tabBarIcon: ({tintColor}) => (
+        <Ionicons style={{fontSize: 26, color: tintColor}} name="ios-person" />
+      )
+    }
+  },
+  PaymentScreen: {
+    screen: MakePaymentScreen,
+    navigationOptions: {
+      tabBarLabel: 'Pay',
       tabBarIcon: ({tintColor}) => (
         <Ionicons style={{fontSize: 26, color: tintColor}} name="ios-person" />
       )
@@ -118,6 +128,7 @@ const AppDrawerNavigator = createDrawerNavigator({
   Tabs: AppStackNavigator, // defined above
   Home: HomeScreen,
   Profile: ProfileScreen,
+  MakePayment: MakePaymentScreen,
   Settings: SettingsScreen
 })
 
