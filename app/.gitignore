@@ -9,7 +9,7 @@ npm-debug.*
 .amplifyrc
 .watchmanconfig
 yarn.lock
-aws-exports.js
+# aws-exports.js
 PhoneInput.js
 PhoneInput2.js
 
