@@ -1,13 +1,10 @@
 
 # AM-331-A3 Licencia de Software 
 
-Effective: April 2018
+Effective: Julio 2019
 
 
-
-
-
-​​​​
+​​​
 
 El Software, con excepción de los Documentos de Soporte y Uso, deberá estar sujetos a los siguientes términos y condiciones, los cuales se empaquetarán como parte de cada Software bajo un archivo que llevará el nombre de "LICENCIA" :   
 
@@ -35,7 +32,7 @@ El Software puede ser del tipo, pero sin estar limitado a (i) programa ejecutabl
 
 
 ​2.3  Código Objeto: código que resulta de la compilación del Código Fuente. La compilación es un proceso informático que traduce el Código Fuente en lenguaje máquina o bytecode.
- 2.4  ​Documentación de Soporte y Uso (la "Documentación"): se refiere a la información de acompañamiento al código fuente y objeto que permite a un humano comprender los objetivos, arquitectura y lenguaje de programación de Software.
+2.4  ​Documentación de Soporte y Uso (la "Documentación"): se refiere a la información de acompañamiento al código fuente y objeto que permite a un humano comprender los objetivos, arquitectura y lenguaje de programación de Software.
 2.5  Software Derivado: obras derivadas del Software, tales como modificaciones, actualizaciones y mejoras de la misma.
 2.6  Usuario: cualquier persona, natural o jurídica, que obtenga una copia del Software.
 
