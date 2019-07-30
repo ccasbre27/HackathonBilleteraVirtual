@@ -12,15 +12,40 @@ export default class ActivityFeedScreen extends React.Component {
   constructor(){
     super()
     this.state = {
-      dataSource: {}
+      dataSource: []
     };
   }
 
-  componentDidMount () {
 
 
+  async getUserData(id) {
+    try {
+      let response = await fetch(
+        `https://nyxduuu0ki.execute-api.us-east-1.amazonaws.com/v1/trans/1`,
+      );
+      let responseJson = await response.json();
+      console.log(responseJson)
 
-    let items = [{ id: 1, desc: 'Pago Kolbi', fecha: '10/09/19', monto: '-$9800', iban: 102000009870053110, image: require('../images/fonabe_logo.jpg') }, 
+    this.setState({
+      dataSource: responseJson,
+    });
+
+      return responseJson;
+    } catch (error) {
+      return error;
+    }
+  }
+ 
+  async UNSAFE_componentWillReceiveProps () {
+    debugger;
+  }
+
+ async componentWillReceiveProps () {
+   debugger;
+console.log(1)
+   const data = await this.getUserData(this.props.userId);
+ 
+   items = [{ id: 1, desc: 'Pago Kolbi', fecha: '10/09/19', monto: '-$9800', iban: 102000009870053110, image: require('../images/fonabe_logo.jpg') }, 
                 { id: 2, desc: 'Nova Cinemas', fecha: '11/09/19', monto: '-$12000', iban: 102000009870053110, image: require('../images/imas_logo.jpg') }, 
                 { id: 3, desc: 'Burguer King', fecha: '10/09/19', monto: '+$4500', iban: 102000009270053110, image: require('../images/inamu_logo.jpg') },
                 { id: 4, desc: 'Mc Donalds', fecha: '10/09/19', monto: '-$2600', iban: 102000009873053110, image: require('../images/icoder_logo.jpg') },
@@ -32,16 +57,19 @@ export default class ActivityFeedScreen extends React.Component {
             ];
 
     this.setState({
-      dataSource: items,
+      dataSource: data,
     });
   }
 
   render() {
+    this.getUserData(this.props.userId);
     return (
       <View style={styles.container}> 
         <Button
           onPress={() => {
-            Alert.alert('You tapped the button!');
+            this.props.navigation.navigate('GetPaymentScreen', {
+              userId: this.state.userId
+            })
           }}
           title="Realizar pago"
           accessibilityLabel="Learn more about this purple button"
