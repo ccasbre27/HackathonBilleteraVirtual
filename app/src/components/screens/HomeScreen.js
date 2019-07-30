@@ -127,10 +127,20 @@ export default class HomeScreen extends React.Component {
          <View style={styles.card2}  numColumns={2}>
          
          
-          <View numColumns={1} >
-                  <Text style={styles.title}>  {this.state.user.first_name} {this.state.last_name} </Text>
-                  <Text style={styles.body}>  {this.state.user.email} </Text> 
-                </View>
+            <View numColumns={1} >
+
+              <Text style={styles.title}>  Integrantes </Text>
+              <View style={{ flexDirection: 'row' }}>  
+                    <Text style={styles.body}>  {this.state.user.first_name} {this.state.last_name} </Text>
+                    <Text style={styles.body}>  {this.state.user.email} </Text> 
+              </View>
+              <View style={{ flexDirection: 'row' }}>  
+                    <Text style={styles.body}>  María Jiménez </Text>
+                    <Text style={styles.body}>  mja23@hotmail.com </Text>
+              </View>
+              
+                  
+            </View>
           </View>
 
           <FlatList
@@ -156,10 +166,14 @@ export default class HomeScreen extends React.Component {
                   <Text style={styles.accountNumber}>{item.iban}</Text>
                 </View>
 
-                <Image 
-                  style={styles.imageThumbnail} 
-                  source = {item.image}
-                  numColumns={1} />
+                <View numColumns={1} >
+                  <Image 
+                    style={styles.imageThumbnail} 
+                    source = {item.image} />
+                    <Image 
+                      style={{ height: 40, width: 40 }} 
+                      source = { require('../images/girl.png')} />
+                </View>
               </View>
               </TouchableOpacity>
             )}
