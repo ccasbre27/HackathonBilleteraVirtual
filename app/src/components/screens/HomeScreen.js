@@ -3,7 +3,11 @@ import {
   StyleSheet,
   View,
   Text,
-  Image, FlatList
+  Image, 
+  FlatList,
+  TextInput,
+  Button
+
 } from 'react-native'
 import {AsyncStorage} from 'react-native'
 
@@ -22,15 +26,39 @@ export const isAccountLinked = () => {
 };
 
 export default class HomeScreen extends React.Component {
+ 
 
-  constructor(){
-    super()
-    this.state = {
-      config: { 
-      },
-      dataSource: {}
+  constructor(props) {
+    super(props);
+    this.state = { 
+      isConfigured: false,
+      id: '1',
+      data: '' 
     };
   }
+
+  async componentDidMount () {
+    const userData = await AsyncStorage.getItem('@MySuperStore:userData');
+    if(userData){
+      this.setState({
+        data: userData,
+        isConfigured: true
+      })
+    }
+  }
+
+  async getUserData(id) {
+    try {
+      let response = await fetch(
+        `https://89p2wz20d0.execute-api.us-east-1.amazonaws.com/prod/virtualwallet/${id}`,
+      );
+      let responseJson = await response.json();
+      return responseJson;
+    } catch (error) {
+      return error;
+    }
+  }
+
 
   async componentDidMount () {
 
@@ -41,30 +69,56 @@ export default class HomeScreen extends React.Component {
       })
     }
     console.log(config);
-
-    let items = [{ id: 1, name: 'FONABE', saldo: '+$74.345.00', iban: 102000009870053110, image: require('../images/fonabe_logo.jpg') }, 
-                { id: 2, name: 'IMAS', saldo: '$500', iban: 102000009870053110, image: require('../images/imas_logo.jpg') }, 
-                { id: 3, name: 'INAMU', saldo: '$0', iban: 102000009870053110, image: require('../images/inamu_logo.jpg') },
-                { id: 4, name: 'ICODER', saldo: '$0', iban: 102000009870053110, image: require('../images/icoder_logo.jpg') },
-                { id: 5, name: 'BANHVI', saldo: '$0', iban: 102000009870053110, image: require('../images/banhvi_logo.png') },
-                { id: 6, name: 'CONAPAM', saldo: '$0', iban: 102000009870053110, image: require('../images/conapam_logo.jpg') },
-                { id: 7, name: 'CONAPDIS', saldo: '$0', iban: 102000009870053110, image: require('../images/conapdis_logo.jpg') },
-                { id: 8, name: 'Miniterio de Trabajo', iban: 102000009870053110, saldo: '$0', image: require('../images/mtss_logo.jpg') },
-                { id: 9, name: 'CCSS', saldo: '$0', iban: 102000009870053110, image: require('../images/ccss_logo.png') }
-            ];
-
-    this.setState({
-      dataSource: items,
-    });
+ 
   }
 
   render () {
-    const isConfig = this.state.config.length;
-console.warn(isConfig)
-    if(isConfig === 0){
+    const { isConfigured, data } = this.state;  
+ 
+    if(!isConfigured){
       return (
-        <View style={styles.container}> 
-          <Text style={styles.textStyle}>Configure your account</Text>
+        <View  style={{
+          margin: 10, 
+        }}> 
+          <Text style={{
+            margin: 10, 
+          }}>Ingresa tu numero de cuenta</Text>
+          <TextInput
+           style={{height: 40, backgroundColor: 'white',marging: 10,  borderColor: 'gray', borderWidth: 1}}
+            onChangeText={(id) => this.setState({
+              id
+            })}
+            value={this.state.id}
+          /> 
+          <Button
+            onPress={async () => {
+                const data = await this.getUserData(this.state.id);
+                await AsyncStorage.setItem('@app:userData',  JSON.stringify(data));
+ 
+ 
+                let items = [
+
+                  { id: 0, name: `${data.first_name} ${data.last_name}` , saldo: data.email, iban: '', image:  null },
+                  
+                  
+                  { id: 1, name: 'FONABE', saldo: '+$74.345.00', iban: 102000009870053110, image: require('../images/fonabe_logo.jpg') }, 
+                  { id: 2, name: 'IMAS', saldo: '$500', iban: 102000009870053110, image: require('../images/imas_logo.jpg') }, 
+                  { id: 3, name: 'INAMU', saldo: '$0', iban: 102000009870053110, image: require('../images/inamu_logo.jpg') },
+                  { id: 4, name: 'ICODER', saldo: '$0', iban: 102000009870053110, image: require('../images/icoder_logo.jpg') },
+                  { id: 5, name: 'BANHVI', saldo: '$0', iban: 102000009870053110, image: require('../images/banhvi_logo.png') },
+                  { id: 6, name: 'CONAPAM', saldo: '$0', iban: 102000009870053110, image: require('../images/conapam_logo.jpg') },
+                  { id: 7, name: 'CONAPDIS', saldo: '$0', iban: 102000009870053110, image: require('../images/conapdis_logo.jpg') },
+                  { id: 8, name: 'Miniterio de Trabajo', iban: 102000009870053110, saldo: '$0', image: require('../images/mtss_logo.jpg') },
+                  { id: 9, name: 'CCSS', saldo: '$0', iban: 102000009870053110, image: require('../images/ccss_logo.png') }
+              ];
+              this.setState({ 
+                dataSource: items,
+                data: data,
+                isConfigured: true
+              });
+            }}
+            title="Listo"
+          />
         </View>
       )
     }
@@ -139,4 +193,4 @@ const styles = StyleSheet.create({
       padding: 10,
       color: '#000'
     }
-})
+});
