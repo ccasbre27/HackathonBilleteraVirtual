@@ -3,19 +3,23 @@ import {
   StyleSheet,
   View,
   Text,
-  Image
+  Image,
+  TextInput,
+  Button
 } from 'react-native';
 
 export default class MakePaymentScreen extends React.Component {
   render() {
     return (
       <View style = { styles.container }>
-          <Text  style={styles.titleText}>Please scan the QR Code</Text>
-          <Image source={require('../images/scan-qr.png')} style={{width: 200, height: 200}} />
-          <View style = { styles.container_inline }>
-              <Image source={require('../images/audio_icon.png')} style={{  width: 75, height: 75 }}/>
-              <Text style={{ fontSize: 17 }}>  ₡ 2500 </Text> 
-          </View>
+          <Text  style={styles.titleText}>Please enter an amount and click on ok to generate the QR Code</Text>
+          <TextInput style={{ width: 200, borderColor: 'gray', borderWidth: 1}} />
+
+          <Button
+            title="Generar QR"
+            accessibilityLabel="Learn more about this purple button"
+            style={{ width: 200, margin: 5 }} />
+            
       </View>
     )
   }
@@ -41,6 +45,8 @@ const styles = StyleSheet.create({
   titleText: {
       fontSize: 20,
       marginBottom: 10,
-      color: '#fff'
+      color: '#fff',
+      padding: 5,
+      textAlign: 'center'
   }
 })
