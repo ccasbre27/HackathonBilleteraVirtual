@@ -67,7 +67,7 @@ console.log(1)
       <View style={styles.container}> 
         <Button
           onPress={() => {
-            this.props.navigation.navigate('GetPaymentScreen', {
+            this.props.navigation.navigate('MakePaymentScreen', {
               userId: this.state.userId
             })
           }}
@@ -101,8 +101,7 @@ console.log(1)
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#5059ae'
+    flex: 1, 
   },
   card: {
     flex: 1, 
@@ -132,8 +131,7 @@ const styles = StyleSheet.create({
       resizeMode: 'contain'
   },
   body: {
-      fontSize: 16,
-      color: '#000'
+      fontSize: 16, 
     },
   btn: {
     color: '#841584'
