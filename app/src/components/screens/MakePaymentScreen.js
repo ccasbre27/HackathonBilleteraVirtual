@@ -1,15 +1,21 @@
-import React from 'react'
+import React from 'react';
 import {
   StyleSheet,
   View,
   Text,
-} from 'react-native'
+  Image
+} from 'react-native';
 
 export default class MakePaymentScreen extends React.Component {
   render() {
     return (
-      <View style={styles.container}> 
-        <Text style={styles.textStyle}>make payent</Text>
+      <View style = { styles.container }>
+          <Text  style={styles.titleText}>Please scan the QR Code</Text>
+          <Image source={require('../images/scan-qr.png')} style={{width: 200, height: 200}} />
+          <View style = { styles.container_inline }>
+              <Image source={require('../images/audio_icon.png')} style={{  width: 75, height: 75 }}/>
+              <Text style={{ fontSize: 17 }}>  ₡ 2500 </Text> 
+          </View>
       </View>
     )
   }
@@ -26,5 +32,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     padding: 10,
     color: '#fff'
+  },
+  container_inline: {
+    flexDirection:'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  titleText: {
+      fontSize: 20,
+      marginBottom: 10,
+      color: '#fff'
   }
 })
