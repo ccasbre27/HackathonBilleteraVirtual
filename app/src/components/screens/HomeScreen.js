@@ -38,6 +38,7 @@ export default class HomeScreen extends React.Component {
   }
 
   async componentDidMount () {
+    /*
     const userData = await AsyncStorage.getItem('@MySuperStore:userData');
     if(userData){
       this.setState({
@@ -45,6 +46,7 @@ export default class HomeScreen extends React.Component {
         isConfigured: true
       })
     }
+    */
   }
 
   async getUserData(id) {
@@ -92,15 +94,11 @@ export default class HomeScreen extends React.Component {
           /> 
           <Button
             onPress={async () => {
-                const data = await this.getUserData(this.state.id);
-                await AsyncStorage.setItem('@app:userData',  JSON.stringify(data));
- 
+                const user = await this.getUserData(this.state.id);
+             //   await AsyncStorage.setItem('@app:userData',  JSON.stringify(data));
+               
  
                 let items = [
-
-                  { id: 0, name: `${data.first_name} ${data.last_name}` , saldo: data.email, iban: '', image:  null },
-                  
-                  
                   { id: 1, name: 'FONABE', saldo: '+$74.345.00', iban: 102000009870053110, image: require('../images/fonabe_logo.jpg') }, 
                   { id: 2, name: 'IMAS', saldo: '$500', iban: 102000009870053110, image: require('../images/imas_logo.jpg') }, 
                   { id: 3, name: 'INAMU', saldo: '$0', iban: 102000009870053110, image: require('../images/inamu_logo.jpg') },
@@ -113,7 +111,7 @@ export default class HomeScreen extends React.Component {
               ];
               this.setState({ 
                 dataSource: items,
-                data: data,
+                user: user,
                 isConfigured: true
               });
             }}
@@ -125,16 +123,25 @@ export default class HomeScreen extends React.Component {
 
     return (
       
+      <View>  
+         
+         <View style={styles.card2}  numColumns={2}>
+         
+         
+          <View numColumns={1} >
+                  <Text style={styles.title}>  {this.state.user.first_name} {this.state.last_name} </Text>
+                  <Text style={styles.body}>  {this.state.user.email} </Text> 
+                </View>
+          </View>
+
           <FlatList
-            style={styles.container}
+             
             data={this.state.dataSource}
             renderItem={({ item }) => (
 
-              <View style={styles.card}
-                numColumns={2}>
+              <View style={styles.card}  numColumns={2}>
                 
-                <View
-                  numColumns={1} >
+                <View numColumns={1} >
                   <Text style={styles.title}>{item.name}</Text>
                   <Text style={styles.body}>{item.saldo}</Text>
                   <Text style={styles.accountNumber}>{item.iban}</Text>
@@ -151,6 +158,7 @@ export default class HomeScreen extends React.Component {
             keyExtractor={(item, index) => index}
           />
      
+     </View>
     )
   }
 }
@@ -167,6 +175,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF', 
     padding: 10,
     justifyContent: 'center'
+  },
+  card2: { 
+    backgroundColor: 'gray'
   },
   title: {
     fontWeight: 'bold',
