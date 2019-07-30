@@ -6,8 +6,8 @@ import {
   Image, 
   FlatList,
   TextInput,
-  Button
-
+  Button,
+  TouchableOpacity
 } from 'react-native'
 import {AsyncStorage} from 'react-native'
 
@@ -139,6 +139,9 @@ export default class HomeScreen extends React.Component {
             data={this.state.dataSource}
             renderItem={({ item }) => (
 
+              <TouchableOpacity onPress={()=>{
+                  this.props.navigation.navigate('ActivityFeed')
+              }}>
               <View style={styles.card}  numColumns={2}>
                 
                 <View numColumns={1} >
@@ -152,6 +155,7 @@ export default class HomeScreen extends React.Component {
                   source = {item.image}
                   numColumns={1} />
               </View>
+              </TouchableOpacity>
             )}
             //Setting the number of column
             numColumns={1}
