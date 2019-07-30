@@ -35,77 +35,29 @@ Amplify.configure(config)
 // Configurations and options for the AppTabNavigator
 const configurations = {
   Home: {
-    screen: HomeScreen,
-    navigationOptions: {
-      tabBarLabel: 'Home',
-      tabBarIcon: ({ tintColor }) => (
-        <Ionicons style={{fontSize: 26, color: tintColor}} name="ios-home" />
-      )
-    }
+    screen: HomeScreen
   },
   Profile: {
-    screen: ProfileScreen,
-    navigationOptions: {
-      tabBarLabel: 'Profile',
-      tabBarIcon: ({tintColor}) => (
-        <Ionicons style={{fontSize: 26, color: tintColor}} name="ios-person" />
-      )
-    }
+    screen: ProfileScreen
   },
   MakePaymentScreen: {
-    screen: MakePaymentScreen,
-    navigationOptions: {
-      tabBarLabel: 'M',
-      tabBarIcon: ({tintColor}) => (
-        <Ionicons style={{fontSize: 26, color: tintColor}} name="ios-person" />
-      )
-    }
+    screen: MakePaymentScreen
   },
   GetPaymentScreen: {
-    screen: GetPaymentScreen,
-    navigationOptions: {
-      tabBarLabel: 'G',
-      tabBarIcon: ({tintColor}) => (
-        <Ionicons style={{fontSize: 26, color: tintColor}} name="ios-person" />
-      )
-    }
+    screen: GetPaymentScreen
   },
   ActivityFeed: {
     screen: ActivityFeed,
-    navigationOptions: {
-      tabBarLabel: 'f',
-      tabBarIcon: ({tintColor}) => (
-        <Ionicons style={{fontSize: 26, color: tintColor}} name="ios-person" />
-      )
-    }
   },
   User: {
     screen: User,
-    navigationOptions: {
-      tabBarLabel: 'u',
-      tabBarIcon: ({tintColor}) => (
-        <Ionicons style={{fontSize: 26, color: tintColor}} name="ios-person" />
-      )
-    }
   },
   Limits: {
-    screen: Limits,
-    navigationOptions: {
-      tabBarLabel: 'l',
-      tabBarIcon: ({tintColor}) => (
-        <Ionicons style={{fontSize: 26, color: tintColor}} name="ios-person" />
-      )
-    }
+    screen: Limits
   },
   Settings: {
-    screen: SettingsScreen,
-    navigationOptions: {
-      tabBarLabel: 'Settings',
-      tabBarIcon: ({ tintColor }) => (
-        <Ionicons style={{fontSize: 26, color: tintColor}} name="ios-settings" />
-      )
-    }
-  },
+    screen: SettingsScreen
+  }
 }
 
 const options = {
@@ -113,7 +65,7 @@ const options = {
   swipeEnabled: true,
   animationEnabled: true,
   navigationOptions: {
-    tabBarVisible: true
+    tabBarVisible: false
   },
   tabBarOptions: {
     showLabel: true,
