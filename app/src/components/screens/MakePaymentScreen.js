@@ -9,17 +9,25 @@ import {
 } from 'react-native';
 
 export default class MakePaymentScreen extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { amount: 4500 };
+  }
+
   render() {
     return (
       <View style = { styles.container }>
           <Text  style={styles.titleText}>Please enter an amount and click on ok to generate the QR Code</Text>
-          <TextInput style={{ width: 200, borderColor: 'gray', borderWidth: 1}} />
+          <TextInput style={{ width: 200, borderColor: 'gray', borderWidth: 1}}
+            onChangeText={( amount ) => this.setState( {amount} )}
+            value={this.state.amount} />
 
           <Button
             title="Generar QR"
             accessibilityLabel="Learn more about this purple button"
             style={{ width: 200, margin: 5 }} />
-            
+
       </View>
     )
   }
