@@ -16,33 +16,50 @@ export default class ActivityFeedScreen extends React.Component {
     };
   }
 
-  componentDidMount () {
-
-
-
-    let items = [{ id: 1, desc: 'Pago Kolbi', fecha: '10/09/19', monto: '-$9800', iban: 102000009870053110, image: require('../images/fonabe_logo.jpg') }, 
-                { id: 2, desc: 'Nova Cinemas', fecha: '11/09/19', monto: '-$12000', iban: 102000009870053110, image: require('../images/imas_logo.jpg') }, 
-                { id: 3, desc: 'Burguer King', fecha: '10/09/19', monto: '+$4500', iban: 102000009270053110, image: require('../images/inamu_logo.jpg') },
-                { id: 4, desc: 'Mc Donalds', fecha: '10/09/19', monto: '-$2600', iban: 102000009873053110, image: require('../images/icoder_logo.jpg') },
-                { id: 5, desc: 'Comtrasuli', fecha: '10/09/19', monto: '-$1500', iban: 102000009450053110, image: require('../images/banhvi_logo.png') },
-                { id: 6, desc: 'Librería Internacional', fecha: '10/09/19', monto: '-$17890', iban: 102000009110053110, image: require('../images/conapam_logo.jpg') },
-                { id: 7, desc: 'Autobuses TRACOPA', fecha: '10/09/19', monto: '-$500', iban: 102000009870053110, image: require('../images/conapdis_logo.jpg') },
-                { id: 8, desc: 'Miniterio de Trabajo', fecha: '10/09/19', monto: '+$450', iban: 102000009870053110, image: require('../images/mtss_logo.jpg') },
-                { id: 9, desc: 'CCSS', fecha: '10/09/19', monto: '+$100', iban: 102000009870053110, image: require('../images/ccss_logo.png') }
-            ];
+  async getUserData(id) {
+    try {
+      let response = await fetch(
+        `https://nyxduuu0ki.execute-api.us-east-1.amazonaws.com/v1/trans/1`
+      );
+      let responseJson = await response.json();
+      console.log(responseJson);
 
     this.setState({
-      dataSource: items,
+      dataSource: responseJson
+    });
+
+      return responseJson;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async UNSAFE_componentWillReceiveProps () {
+    debugger;
+  }
+
+ async componentWillReceiveProps () {
+   debugger;
+    console.log(1)
+   const data = await this.getUserData(this.props.userId);
+
+  
+
+    this.setState({
+      dataSource: data
     });
   }
 
   render() {
+    this.getUserData(this.props.userId);
     return (
       <View style={styles.container}> 
         <Button
           onPress={() => {
-            Alert.alert('You tapped the button!');
-          }}
+                       this.props.navigation.navigate('MakePaymentScreen', {
+              userId: this.state.userId
+            })
+          } }
           title="Realizar pago"
           accessibilityLabel="Learn more about this purple button"
           style={ styles.btn } />

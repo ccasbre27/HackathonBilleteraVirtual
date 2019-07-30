@@ -9,33 +9,50 @@ import {
 } from 'react-native';
 
 export default class MakePaymentScreen extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { amount: 4500 };
+  }
+
   render() {
     return (
       <View style = { styles.container }>
           <Text  style={styles.titleText}>Please enter an amount and click on ok to generate the QR Code</Text>
-          <TextInput style={{ width: 200, borderColor: 'gray', borderWidth: 1}} />
+          <TextInput style={{ width: 200, borderColor: 'black', borderWidth: 1}} />
 
           <Button
-            title="Generar QR"
+            onPress={()=>{
+                fetch('https://nyxduuu0ki.execute-api.us-east-1.amazonaws.com/v1/trans/1', {
+                  method: 'POST',
+                  header: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                  }
+                })
+
+            this.props.navigation.navigate('ActivityFeed', {
+              userId: 1
+            })
+
+            }}
+            title="Pagar"
             accessibilityLabel="Learn more about this purple button"
             style={{ width: 200, margin: 5 }} />
-            
+
       </View>
     )
   }
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#5059ae',
+    flex: 1, 
     alignItems: 'center',
     justifyContent: 'center',
   },
   textStyle: {
     fontWeight: 'bold',
     fontSize: 18,
-    padding: 10,
-    color: '#fff'
+    padding: 10, 
   },
   container_inline: {
     flexDirection:'row',
@@ -44,8 +61,7 @@ const styles = StyleSheet.create({
   },
   titleText: {
       fontSize: 20,
-      marginBottom: 10,
-      color: '#fff',
+      marginBottom: 10, 
       padding: 5,
       textAlign: 'center'
   }
