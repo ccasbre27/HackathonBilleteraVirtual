@@ -10,6 +10,7 @@ import {
   TouchableOpacity
 } from 'react-native'
 import {AsyncStorage} from 'react-native'
+import { Avatar, Badge, Icon, withBadge } from 'react-native-elements';
 
 export const isAccountLinked = () => {
   return new Promise((resolve, reject) => {
@@ -96,8 +97,6 @@ export default class HomeScreen extends React.Component {
             onPress={async () => {
                 const user = await this.getUserData(this.state.id);
              //   await AsyncStorage.setItem('@app:userData',  JSON.stringify(data));
-               
- 
                 let items = [
                   { id: 1, name: 'FONABE', saldo: '+$74.345.00', iban: 102000009870053110, image: require('../images/fonabe_logo.jpg') }, 
                   { id: 2, name: 'IMAS', saldo: '$500', iban: 102000009870053110, image: require('../images/imas_logo.jpg') }, 
@@ -150,9 +149,16 @@ export default class HomeScreen extends React.Component {
             renderItem={({ item }) => (
 
               <TouchableOpacity onPress={()=>{
-                  this.props.navigation.navigate('ActivityFeed')
+                  this.props.navigation.navigate('ActivityFeed', {
+                    userId: this.state.userId
+                  })
               }}>
               <View style={styles.card}  numColumns={2}>
+
+                <Badge
+                  status="success"
+                  containerStyle={{ position: 'absolute', top: -4, right: -4 }}
+                />
                 
                 <View numColumns={1} >
                   <Text style={styles.title}>{item.name}</Text>
