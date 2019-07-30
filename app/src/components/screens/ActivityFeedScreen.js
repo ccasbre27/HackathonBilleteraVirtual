@@ -12,7 +12,7 @@ export default class ActivityFeedScreen extends React.Component {
   constructor(){
     super()
     this.state = {
-      dataSource: {}
+      dataSource: []
     };
   }
 

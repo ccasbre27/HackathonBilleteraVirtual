@@ -34,21 +34,10 @@ export default class HomeScreen extends React.Component {
     this.state = { 
       isConfigured: false,
       id: '1',
-      data: '' 
+      data: '',
+      showNot: true
     };
-  }
-
-  async componentDidMount () {
-    /*
-    const userData = await AsyncStorage.getItem('@MySuperStore:userData');
-    if(userData){
-      this.setState({
-        data: userData,
-        isConfigured: true
-      })
-    }
-    */
-  }
+  } 
 
   async getUserData(id) {
     try {
@@ -63,16 +52,21 @@ export default class HomeScreen extends React.Component {
   }
 
 
-  async componentDidMount () {
-
-    const config = await isAccountLinked();
-    if(config){
-      this.setState({
-        config
-      })
-    }
-    console.log(config);
+    componentDidMount () {
  
+ 
+    setInterval(()=>{
+      value = this.state.showNot;
+      if(this.state.showNot === false){
+        value = true
+      } else {
+        value = false
+      }
+      this.setState({
+        showNot: value
+      })
+
+    }, 3000)
   }
 
   render () {
@@ -146,20 +140,17 @@ export default class HomeScreen extends React.Component {
           <FlatList
              
             data={this.state.dataSource}
-            renderItem={({ item }) => (
+            renderItem={({ item , index }) => (
 
               <TouchableOpacity onPress={()=>{
                   this.props.navigation.navigate('ActivityFeed', {
                     userId: this.state.userId
                   })
               }}>
+
               <View style={styles.card}  numColumns={2}>
 
-                <Badge
-                  status="success"
-                  containerStyle={{ position: 'absolute', top: -4, right: -4 }}
-                />
-                
+
                 <View numColumns={1} >
                   <Text style={styles.title}>{item.name}</Text>
                   <Text style={styles.body}>{item.saldo}</Text>
@@ -167,6 +158,11 @@ export default class HomeScreen extends React.Component {
                 </View>
 
                 <View numColumns={1} >
+
+                { (index === 2 && this.state.showNot )  &&
+                   <Badge value={<Text>Nueva Tx</Text>} />
+                }
+                  
                   <Image 
                     style={styles.imageThumbnail} 
                     source = {item.image} />
