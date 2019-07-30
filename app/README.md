@@ -11,34 +11,69 @@ Esta herramienta digital forma parte del catálogo de herramientas del **Banco I
 Una billetera de virtual para tu hogar
 
 Un sistema de pagos digital, donde los beneficiarios podran acceder a los bienes y servicios en todo establecimiento comercial, por medio de cualquier telefono. El sistema cuenta con seguridad, buenas practicas y documentacion.
-
+El sistema cuenta con seguridad, ademas de integracion con los servicios WebServices.
 ---
 ### Guía de usuario
 ---
 GUIA
 
+Guía Rápida para el uso de la aplicación UNIBILL Billetera Electrónica
+
+Ingresar al sistema mediante Login 
+A continuación se muestra un listado de las cuentas de ayuda social, que el usuario o familiar registrado posee. 
+Seleccionar la cuenta del usuario
+A continuacion, realisar una transaccion o transacciones entre cuentas
+Posteriormente puede ver el detalle de las transaciones efectuadas en cada cuenta
+
+
+
 ### Guía de instalación
 
 ---
 
-La guía de instalación debe contener de manera específica:
+####Requisitos de Instalacion
 
-Los requisitos del sistema operativo para la compilación (versiones específicas de librerías, software de gestión de paquetes y dependencias, SDKs y compiladores, etc.).
-Las dependencias propias del proyecto, tanto externas como internas (orden de compilación de sub-módulos, configuración de ubicación de librerías dinámicas, etc.).
-Pasos específicos para la compilación del código fuente y ejecución de tests unitarios en caso de que el proyecto disponga de ellos.
+Instalar nodejs (https://nodejs.org/en/ "Link")
+
+El sistema de control de versiones distribuidas [Git](https://git-scm.com/) 
  
+Un navegador como [Google Chrome](https://www.google.com.mx/intl/es_ALL/chrome/) 
+
+Un Editor de codigo [Visual Studio Code](https://code.visualstudio.com/download)
+
+Instalar Android Studio [Android Studio](https://developer.android.com/studio)
 
 
 #### Dependencias:
 
 
-Descripción de los recursos externos que generan una dependencia para la reutilización de la herramienta digital (librerías, frameworks, acceso a bases de datos y licencias de cada recurso). Es una buena práctica describir las últimas versiones en las que ha sido probada la herramienta digital.  
+#####React Native 
+
+#####Node.js with NPM
+npm install -g react-native-cli
+npm install -g create-react-native-app
+#####AWS Mobile CLI
+npm install -g awsmobile-cli
+
+```bash
+
+##### clone el proyecto
+git clone https://github.com/frednajera/HackathonBilleteraVirtual.git
+
+##### vaya al directorio clonado
+cd HackathonBilleteraVirtual
+
+##### instale las dependencias
+npm install
+
+##### corra el proyecto como desarrollador
+npm run dev
+```
 
 
 ### Cómo contribuir
 
   
-
 ---
 
 Si deseas contribuir con este proyecto, por favor lee las siguientes guías que establece el [BID](https://www.iadb.org/es  "BID"):
@@ -74,8 +109,9 @@ Puedes ver el código de conducta para este proyecto en el siguiente archivo [CO
 
 ---
 
-INFORMACION
-
+Se implementa una solucion de framework React en javascript este permite la integracion de la app en los sistemas Android y iOS
+El app es funcional y se conecta a servicios, se puede utilizar como inicio para una solucion real a implementar.
+Utiliza los patrones de diseño inyeccion de dependendias, facade y otros que se incluyen en el framework de javascript
   
 
 ### Licencia
